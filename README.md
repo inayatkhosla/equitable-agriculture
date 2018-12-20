@@ -1,5 +1,5 @@
 # Equitable Produce Marketing for Indian Farmers
-Raising farmer incomes by making wholesale agricultural markets more transparent, predictable, and accessible.   
+Raising farmer incomes by making agricultural markets more transparent and  predictable.   
 
 ## Table of Contents
 **[Motivation](#Motivation)**<br>
