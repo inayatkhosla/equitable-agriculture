@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  lambda:
+    build: .
+    environment:
+      - PYTHONPATH=/var/task/src:/var/task/lib
+      - PATH=/var/task/bin
+      - AWS_BUCKET_NAME='mandibucket'
+      - AWS_ACCESS_KEY_ID='AKIAJGRB7QLRT3CLQE3A'
+      - AWS_SECRET_ACCESS_KEY='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'
+    volumes:
+      - ./src/:/var/task/src/
