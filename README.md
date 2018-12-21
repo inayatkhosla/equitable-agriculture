@@ -22,7 +22,7 @@ Before building out an application, I wanted to ensure that 1) the data sources 
 
 Data on wholesale market conditions is hard to come by. The only reliable source is the government, which publishes daily prices and arrivals on the [Agmarknet portal](http://agmarknet.gov.in/). While coverage is extensive - a broad range of commodities across most markets - it is also spotty. Data on Kinnows for instance, isn't available for large markets like Chandigarh and Delhi. But things do seem to be improving.
 
-The portal doesn't have an API, and while export functionality exists, it doesn't work, so the data has to be scraped. The site is extensively interactive - a selenium scraper is needed to populate relevant fields and navigate within and across pages. This isn't really sustainable for a proper platform, but it works for now. The script runs every evening, scrapes the data, and writes the ouptut to a Postgres RDS instance. In order to ensure reliability and minimize compute time, it's scheduled to run on serverless infrastructure provided by AWS Lambda. 
+The portal doesn't have an API, and while export functionality exists, it doesn't work, so the data has to be scraped. The site is very interactive - a selenium scraper is needed to populate relevant fields and navigate within and across pages. This isn't really sustainable for a proper platform, but it works for now. The script runs every evening, scrapes the data, and writes the ouptut to a Postgres RDS instance. In order to ensure reliability and minimize compute time, it's scheduled to run on serverless infrastructure provided by AWS Lambda. 
 
 ## Functionality
 The following dynamic views are available:
