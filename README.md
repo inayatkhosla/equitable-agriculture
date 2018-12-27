@@ -1,11 +1,10 @@
 # Equitable Produce Marketing for Indian Farmers
-Raising farmer incomes by making agricultural markets more transparent and  predictable   
+Raising farmer incomes by making agricultural markets more transparent and predictable   
 
-## Table of Contents
+## Contents
 **[Motivation](#Motivation)**<br>
+**[Application](#Application)**<br>
 **[Initial Scope](#initial-scope)**<br>
-**[Data](#Data)**<br>
-**[Functionality](#Functionality)**<br>
 **[Usage](#Usage)**<br>
 
 ## Motivation
@@ -15,43 +14,49 @@ This haphazard, suboptimal approach is by no means an isolated phenomenon. Whole
 
 Greater transparency will help ease these inequities. Consistent, easy access to prices, quantities, and trends across markets will encourage farmers to cut through layers of middlemen and market their produce themselves. Those who can afford the transportation costs will get better prices, while those who can't will have more negotiating power. Knowing arrival patterns will inform timelines for harvesting and help reduce wastage. Any additional predictability that can be provided will go a long way in giving farmers more agency.
 
-## Initial Scope
-Before building out an application, I wanted to ensure that 1) the data sources line up with conditions on the ground, and 2) that this approach actually leads to higher earnings for the farmer. I'm currently testing a bare bones version on our farm, and things are looking encouraging on both fronts. 
+## Application
+A simple, lightweight, interactive platform that provides farmers access to current conditions, trends, and projections across a range of markets and commodities
 
-## Data
+### Data
 
-Data on wholesale market conditions is hard to come by. The only reliable source is the government, which publishes daily prices and arrivals on the [Agmarknet portal](http://agmarknet.gov.in/). While coverage is extensive - a broad range of commodities across most markets - it is also spotty. Data on Kinnows for instance, isn't available for large markets like Chandigarh and Delhi. But things do seem to be improving.
+Data on wholesale market conditions is hard to come by. The only reliable source is the government, which publishes daily prices and arrivals on the [Agmarknet portal](http://agmarknet.gov.in/). While coverage is extensive - a number of commodities across most markets - it is also spotty. Data on Kinnows for instance, isn't available for large markets like Chandigarh and Delhi.
 
-The portal doesn't have an API, and while export functionality exists, it doesn't work, so the data has to be scraped. The site is very interactive - a selenium scraper is needed to populate relevant fields and navigate within and across pages. This isn't really sustainable for a proper platform, but it works for now. The script runs every evening, scrapes the data, and writes the ouptut to a Postgres RDS instance. In order to ensure reliability and minimize compute time, it's scheduled to run on serverless infrastructure provided by AWS Lambda. 
+The portal doesn't have an API or functioning exports, so the data has to be scraped. Given how interactive the site is, a selenium scraper is needed to populate relevant fields and navigate pages. This isn't ideal, but given the state of government infrastructure, it's what we have. The script runs every evening, scrapes the data, and writes the output to a Postgres RDS instance. In order to minimize compute time and ensure reliability, it's scheduled to run on serverless infrastructure provided by AWS Lambda. 
 
-## Functionality
-The following dynamic views are available:
-- Data availability for prices and arrivals across states and districts
-- Current prices, arrivals, and price variations across markets
-- Recent price and arrival trends across regions and specific markets
-- Long-term price and arrivals trends across regions and specific markets
-
-If the data is confirmed to be reliable, predictive components will be added:
+### Services
+Transparency:
+- Current prices, arrivals, and price variations across markets 
+- Recent price and arrival trends by region and market
+- Long-term price and arrivals trends by region and market
+- Data availability across states and districts
+ 
+Predictability:
 - Aggregate price levels relative to previous seasons
 - Expected prices at specific markets for the coming week
+
+
+## Initial Scope
+Before building out an application, I want to ensure that 1) the data lines up with conditions on the ground, and 2) that this information actually leads to higher earnings for the farmer. I'm currently testing a bare bones version on our farm, and things are looking encouraging on both fronts. 
+
+The test version covers data pipelines and visualizations of market conditions; the predictive component will be added once the veracity of the data has been confirmed.
 
 
 ## Usage
 ### Setup
 #### Environment
-- Install dependencies `pip install -r requirements.txt`. This contains some machine learning libraries that are currently extraneous, but will come in handy later  
-- If you're going to run the scraper within your environment, make sure [Chromedriver](http://chromedriver.chromium.org/) is installed
+- Install dependencies:  `pip install -r requirements.txt` 
+- If you're going to run the scraper within your environment, make sure [Chromedriver](http://chromedriver.chromium.org/) is installed and the scripts are pointing to its location
 - If you'd rather run the scraper using AWS Lambda, I would recommend testing the code in a simulated [docker](https://docs.docker.com/install/) environment first
 
 #### DB
-- Set up a [postgres DB](https://aws.amazon.com/getting-started/tutorials/create-connect-postgresql-db/) instance
+- Set up a DB. I've used [postgres](https://aws.amazon.com/getting-started/tutorials/create-connect-postgresql-db/), but feel free to use whatever you like. You just have to update the sqlalchemy engine creator in helpers.py
 - Store DB credentials in `secrets.json`. `db_info_example.json` is provided for reference
 - Create DB tables by running `python tablecreator.py`
 
 ### Scraper
 - If you'd rather run the scraper from a local machine or an EC2 instance 
     - Run `python scrape.py`
-    - You can set up a cron job that executes the code at specified intervals
+    - You can set up a cron job to execute the code at specified times
 
 - If you prefer to use Lambda
     - Excellent instructions are available [here](https://robertorocha.info/setting-up-a-selenium-web-scraper-on-aws-lambda-with-python/)
@@ -63,5 +68,5 @@ If the data is confirmed to be reliable, predictive components will be added:
         * `make build-lambda-package`
     - The last command will output a zip folder than can be uploaded to S3 for Lambda to read
 
-### Viz
-Visualizations are demonstrated in VizDemo.ipynb
+### Services
+Visualizations of market conditions are demonstrated in VizDemo.ipynb
