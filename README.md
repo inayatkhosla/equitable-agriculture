@@ -12,7 +12,7 @@ My family owns a [Kinnow](https://en.wikipedia.org/wiki/Kinnow) orchard in India
 
 This haphazard, suboptimal approach is by no means an isolated phenomenon. Wholesale markets across the country are opaque, largely inaccessible, and consistently [volatile](https://thewire.in/agriculture/onion-farmers-remain-at-mercy-of-market-ups-and-downs-as-prices-crash-again). Given the uncertainty, farmers are forced to rely on a handful of [local moneylenders and middlemen](https://scroll.in/article/828159/in-punjab-farmers-angry-with-system-of-commission-agents-find-hope-in-aaps-manifesto), who are almost always in a position to dictate prices. As a result, farmers inevitably end up selling their produce for just [10-15%](https://twitter.com/MirrorNow/status/1070703842004738048) of the final sale price.
 
-Greater transparency will help ease these inequities. Consistent, easy access to prices, quantities, and trends across markets will encourage farmers to cut through layers of middlemen and market their produce themselves. Those who can afford the transportation costs will get better prices, while those who can't will have more negotiating power. Knowing arrival patterns will inform timelines for harvesting and help reduce wastage. Any additional predictability that can be provided will go a long way in giving farmers more agency.
+Greater transparency should help ease these inequities. Consistent, easy access to prices, quantities, and trends across markets will encourage farmers to cut through layers of middlemen and market their produce themselves. Those who can afford the transportation costs will get better prices, while those who can't will have more negotiating power. Knowing arrival patterns will inform timelines for harvesting and help reduce wastage. Any additional predictability that can be provided will go a long way in giving farmers more agency.
 
 ## Application
 A simple, lightweight, interactive platform that provides farmers access to current conditions, trends, and projections across a range of markets and commodities
@@ -36,7 +36,9 @@ Predictability:
 
 
 ## Initial Scope
-Before building out an application, I want to ensure that 1) the data lines up with conditions on the ground, and 2) that this information actually leads to higher earnings for the farmer. I'm currently testing a bare bones version on our farm, and things are looking encouraging on both fronts. 
+Before building out the application, I want to ensure that 1) the data lines up with conditions on the ground, and 2) that this information actually leads to higher earnings for the farmer. Given the number of middlemen one still has to deal with at the wholesale markets, niether of these things is a given.
+
+I'm currently testing a bare bones version on our farm, and things are looking encouraging on both fronts. 
 
 The test version covers data pipelines and visualizations of market conditions; the predictive component will be added once the veracity of the data has been confirmed.
 
@@ -67,6 +69,8 @@ The test version covers data pipelines and visualizations of market conditions; 
         * `make docker-run` -  Make sure everything runs fine
         * `make build-lambda-package`
     - The last command will output a zip folder than can be uploaded to S3 for Lambda to read
+
+- If you'd like to pull data on other commodities or states, just update the arguments in scrape.py
 
 ### Services
 Visualizations of market conditions are demonstrated in VizDemo.ipynb
