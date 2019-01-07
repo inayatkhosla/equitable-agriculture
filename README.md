@@ -15,7 +15,7 @@ This haphazard, suboptimal approach is by no means an isolated phenomenon. Whole
 Greater transparency should help ease these inequities. Consistent, easy access to prices, quantities, and trends across markets will encourage farmers to cut through layers of middlemen and market their produce themselves. Those who can afford the transportation costs will get better prices, while those who can't will have more negotiating power. Knowing arrival patterns will inform timelines for harvesting and help reduce wastage. Any additional predictability that can be provided will go a long way in giving farmers more agency.
 
 ## Application
-A simple, lightweight, interactive platform that provides farmers access to current conditions, trends, and projections across a range of markets and commodities
+A simple, interactive platform that provides farmers access to current conditions, trends, and projections across a range of markets and commodities
 
 ### Data
 
