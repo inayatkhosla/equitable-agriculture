@@ -58,6 +58,7 @@ The test version covers data pipelines and visualizations of market conditions; 
 ### Scraper
 - If you'd rather run the scraper from a local machine or an EC2 instance 
     - Run `python scrape.py`
+    - Start and end dates can be specified `python scrape.py --start 2018-12-08 --end 2018-12-10`
     - You can set up a cron job to execute the code at specified times
 
 - If you prefer to use Lambda
