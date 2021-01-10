@@ -30,5 +30,7 @@ def main():
             #print(state + ' failed, moving on')
             #continue
 
-main()
+
+if __name__ == "__main__":
+    main()
     

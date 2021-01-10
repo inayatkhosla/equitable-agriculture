@@ -12,12 +12,10 @@ scrapers.py:
     MandiQuantityScraper (cls): Wrapper - scrapes, processes, and writes output
 """
 
-
-
-import pathlib
 import os
 import time
 import json
+import pathlib
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
