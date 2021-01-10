@@ -19,14 +19,14 @@ plotters.py:
     Trends (cls): Wrapper - Pulls, processes, and plots market trends
 """
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 from sqlalchemy import create_engine
 
+import cufflinks as cf
+from plotly import tools
 import plotly.graph_objs as go
 import plotly.figure_factory as ff
-from plotly import tools
-import cufflinks as cf
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 
 import lib.db_puller as db
